@@ -1,10 +1,10 @@
 {
-  "name": "VLC Visible light Communication",
+  "name": "Asynchronous Visible Light Communication",
   "keywords": "vlc",
   "description": "Simple 1Wire like visible light communication library",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/tihhanovski/Asynchronous_VLC/"
   },
   "authors": {
     "name": "Ilja Tihhanovski",
