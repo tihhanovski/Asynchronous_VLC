@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Short protocol description</h1>
+<p>Inspired by 1-Wire protocol, <a href="https://en.wikipedia.org/wiki/1-Wire">https://en.wikipedia.org/wiki/1-Wire</a></p>
+<p>Protocol has four symbols: <ul>
+  <li>START</li><li>0</li><li>1</li><li>FINISH</li></ul> Every symbol is encoded with duration of transmitter LED being ON. There are pauses between symbols, when transmitter LED is OFF.</p>
+<p>Every symbol has different duration, difference should be big enough to let the receiver easily decide which symbol it got. Pauses between symbols can have same duration.</p>
+<p>Each transmission begins with START symbol.</p>
+<p>Then entire message is transmitted with <i>data symbols</i> 0 and 1. Every symbol represents corresponding bit value.</p>
+<p>Most significant bit of the byte is transmitted first.</p>
+<p>Synchronisation is not required.</p>
+<p>Transmission is terminated with FINISH symbol.</p>
+
+<p>Receiver measures time between the beginning and the end of symbol (RISING and FALLING edge of signal on input pin of microcontroller).</p>
+<p>
+
+<h2>Example: Sending one byte 10011010</h2>
+<pre>
+    If duration unit = d milliseconds, then:
+    START symbol duration = 10d,
+    0 duration = 3d
+    1 durtion = d
+    FINISH symbol duration = 15d
+    
+    pause between impulses lasts 3d
+</pre>
+<svg width="1000" height="350">
+	<line x1="50" y1="100" x2="1000" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
+  <line x1="60" y1="110" x2="60" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+	<line x1="50" y1="14" x2="1000" y2="14" style="stroke:rgb(0,255,0);stroke-width:1" />
+  <text x="1" y="20" fill="green">HIGH</text>
+  
+  <polyline points="50,100 
+    100,100 
+    101,10 149,10 150,100 165,100
+    166,10 169,10 170,100 185,100
+    186,10 199,10 200,100 215,100
+    216,10 229,10 230,100 245,100
+    246,10 249,10 250,100 265,100
+    266,10 269,10 270,100 285,100
+    286,10,299,10 300,100 315,100
+    316,10 319,10 320,100 335,100
+    336,10 349,10 350,100 365,100
+    366,10 439,10 440,100 500,100
+    "
+  style="fill:none;stroke:red;stroke-width:3" />
+
+	<line x1="100" y1="0" x2="100" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+  <text x="102" y="110" fill="grey" transform="rotate(90 102,110)">START (duration = 10d)</text>
+	<line x1="150" y1="0" x2="150" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="152" y="110" fill="grey" transform="rotate(90 152,110)">pause (duration = 3d)</text>
+	<line x1="165" y1="0" x2="165" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="167" y="110" fill="grey" transform="rotate(90 167,110)">1 (duration = d) + pause (3d)</text>
+	<line x1="185" y1="0" x2="185" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="187" y="110" fill="grey" transform="rotate(90 187,110)">0 (duration = 3d) + pause (3d)</text>
+	<line x1="215" y1="0" x2="215" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="217" y="110" fill="grey" transform="rotate(90 217,110)">0</text>
+	<line x1="245" y1="0" x2="245" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="247" y="110" fill="grey" transform="rotate(90 247,110)">1</text>
+	<line x1="265" y1="0" x2="265" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+  
+  <text x="267" y="110" fill="grey" transform="rotate(90 267,110)">1</text>
+	<line x1="285" y1="0" x2="285" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+  
+  <text x="287" y="110" fill="grey" transform="rotate(90 287,110)">0</text>
+	<line x1="315" y1="0" x2="315" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="317" y="110" fill="grey" transform="rotate(90 317,110)">1</text>
+	<line x1="335" y1="0" x2="335" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="337" y="110" fill="grey" transform="rotate(90 337,110)">0</text>
+	<line x1="365" y1="0" x2="365" y2="150" style="stroke:rgb(100,100,100);stroke-width:1" />
+
+  <text x="367" y="110" fill="grey" transform="rotate(90 367,110)">FINISH (duration = 15d)</text>
+  
+
+  Sorry, your browser does not support inline SVG.
+</svg> 
+</body>
+</html>

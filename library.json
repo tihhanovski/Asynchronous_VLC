@@ -1,0 +1,17 @@
+{
+  "name": "VLC Visible light Communication",
+  "keywords": "vlc",
+  "description": "Simple 1Wire like visible light communication library",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "authors": {
+    "name": "Ilja Tihhanovski",
+    "url": "https://github.com/tihhanovski/"
+  },
+  "version": "0.1",
+  "frameworks": "arduino",
+  "platforms": "atmelavr",
+  "examples": []
+}
